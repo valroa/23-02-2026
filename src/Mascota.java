@@ -1,3 +1,5 @@
+
+
 public class Mascota {
 
 
@@ -87,11 +89,9 @@ public class Mascota {
 
 
     //2. ALIMENTAR
-    public void alimentar(double cantidad) {
-        if (peso == 0){
-            System.out.println("NO HAY INFORMACION");
-        }else if (cantidad >= 0) {
-            peso = peso + cantidad;
+    public void alimentar(double peso) {
+        if (peso >= 0) {
+            peso = peso + peso;
             System.out.println("El peso es: " + peso);
         } else {
             System.out.println("No cantidades negativas, plis");
@@ -107,32 +107,5 @@ public class Mascota {
             System.out.println("cumplio años, ahora tiene: " + edad + "años");
         }
     }
-    //4. MOSTRAR INFO
-    public void info() {
-        if (nombre == null && especie == null && edad == 0 && peso == 0 ) {
-            System.out.println("Nombre: / ");
-            System.out.println("Especie: /");
-            System.out.println("Edad: /");
-            System.out.println("Peso: /");
-            System.out.println("Vacunado: /");
-            System.out.println("  ");
-            System.out.println("INGRESA INFORMACION DE LA MASCOTA:");
-
-
-        } else {
-
-            System.out.println("Nombre: " + nombre);
-            System.out.println("Especie: " + especie);
-            System.out.println("Edad: " + edad);
-            System.out.println("Peso: " + peso);
-
-            if (vacunada == true){
-                System.out.println("Vacunado: SI");
-
-            }else {
-                System.out.println("Vacunado: NO");
-            }
-        }
 
     }
-}

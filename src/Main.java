@@ -1,4 +1,4 @@
-
+import java.util.*;
 void main() {
     Scanner teclado = new Scanner(System.in);
 
@@ -14,61 +14,87 @@ void main() {
 
     Mascota Masco3 = new Mascota();
 
-
+    List<Mascota> lstMascota = new ArrayList<>();
 
     int opcion;
     do {
 
         System.out.println("PETS VETE");
-        System.out.println("1. INFORMACION INICIAL");
-        System.out.println("2. ALIMENTAR");
-        System.out.println("3. VACUNARLA");
-        System.out.println("4. HACER CUMPLIR AÑOS");
-        System.out.println("5. INFORMACION FINAL");
-
+        System.out.println("1. CREAR ANIMAL");
+        System.out.println("2. MOSTRAR TODO");
+        System.out.println("3. BUSCAR NOMBRE");
 
         opcion = teclado.nextInt();
 
         switch (opcion) {
             case 1 -> {
-                if (Masco3.getNombre() == null) {
-                    Masco3.info();
 
-                    System.out.println("Ingrese el nombre de la mascota: ");
-                    Masco3.setNombre(teclado.next());
 
-                    System.out.println("Ingrese la especie de la mascota: ");
-                    Masco3.setEspecie(teclado.next());
+                System.out.println("Ingrese el nombre de la mascota: ");
+                String nombre = teclado.next();
 
-                    System.out.println("Ingrese la edad de la mascota: ");
-                    Masco3.setEdad(teclado.nextInt());
+                System.out.println("Ingrese la especie de la mascota: ");
+                String especie = teclado.next();
 
-                    System.out.println("Ingrese el peso de la mascota: ");
-                    Masco3.setPeso(teclado.nextDouble());
+                System.out.println("Ingrese la edad de la mascota: ");
+                int edad = teclado.nextInt();
 
-                    Masco3.setVacunada(false);
-                } else {
-                    Masco3.info();
-                }
+                System.out.println("Ingrese el peso de la mascota: ");
+                double peso = teclado.nextDouble();
+
+               Mascota m2 = new Mascota (nombre, especie, edad, peso);
+               lstMascota.add(m2);
+
             }
             case 2 -> {
-                System.out.println("Ingrese la cantidad de alimento (en kg): ");
-                double cantidad = teclado.nextDouble();
-                Masco3.alimentar(cantidad);
 
+                System.out.println(lstMascota);
+                for (Mascota m : lstMascota) {
+                    System.out.println(m);
+                }
             }
             case 3 -> {
-                Masco3.vacunar();
+                String bus;
+                System.out.println("INGRESE EL NOMBRE DEL ANIMAL PARA BUSCARLO: ");
+                bus = teclado.next();
 
-                System.out.println("VACUNADO");
+                Mascota masco1 = null;
+
+                for (Mascota m1 : lstMascota) {
+                    if (m1.getNombre().equalsIgnoreCase(bus)) {
+                        masco1 = m1;
+                    }
+
+                }
+                System.out.println("""
+                        1.Alimentar
+                        2.Vacunar
+                        3. Cumplir años
+                        """);
+                int op;
+                op = teclado.nextInt();
+                switch (op) {
+
+                    case 1 -> {
+                        System.out.println("Ingrese la cantidad de alimento (en kg): ");
+                        double peso = teclado.nextDouble();
+                        Masco3.alimentar(peso);
+
+                    }
+                    case 2 -> {
+                        Masco3.vacunar();
+
+                        System.out.println("VACUNADO");
+                    }
+                    case 3 -> Masco3.años();
+
+                    default -> System.out.println("opcion invalida");
+                }
             }
-            case 4 ->   Masco3.años();
-            case 5 -> {
-                Masco3.info();
-            }
+
             default -> System.out.println("opcion invalida");
         }
-    } while (opcion != 5);
+    } while (opcion != 3);
     System.out.println("Saliendo");
 
 }
